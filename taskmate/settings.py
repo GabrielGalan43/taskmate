@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'todolist_app',
     'users_app',
+    'crispy_forms',  # This is an external added library, to use it with django forms.
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4' # We need to add this line in order to use bootstrap4 with crispy_forms.
+
+# We added this line to change the default redirect.
+# Now after logged in, we'll be redirected to 'todolist' view.
+LOGIN_REDIRECT_URL = 'todolist' 

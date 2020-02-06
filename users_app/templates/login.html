@@ -2,12 +2,12 @@
 {% load crispy_forms_tags %} <!-- We use crispy forms library (pip install django-crispy-forms -->
 
 {% block title %}
-<title>Register - Taskmate</title>
+<title>Login - Taskmate</title>
 {% endblock title %}
 
 {% block content %}
    <br>
-   <h2>Register On TaskMate</h2>
+   <h2>Login On TaskMate</h2>
     {% if messages %}
         {% for message in messages %}
         <div class="alert alert-info alert-dismissible fade show" role="alert"> <!-- We added "alert-dismissible fade show" in class -->
@@ -21,8 +21,8 @@
     {% endif %}
    <form method="POST" class="mt-5 col-lg-6">
       {% csrf_token %}
-      {{ register_form|crispy }}
+      {{ form|crispy }} <!-- "form" is called from django library directly. -->
       <!-- {{ register_form.as_p }} ".as_p" Show forms in a paragraph alignment. -->
-      <button type="submit" class="btn btn-primary mb-5">Register</button>
+      <button type="submit" class="btn btn-primary mb-5">Login</button>
    </form>   
 {% endblock content %}
