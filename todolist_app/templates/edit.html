@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Edit Task - Taskmate</title>
+{% endblock title %}
+
+{% block content %}
+   <!-- The task_obj is the object obtained with the query made in, -->
+   <!-- "edit_task" function.  From this object we just wanna see the -->
+   <!-- "task" data. -->
+   <!-- <h1>{{ task_obj.task }}</h1> -->
+   </br>
+   <form method="POST" class="row">
+        {% csrf_token %}
+        <label class="col-lg-2"></label>
+        <!-- One of the things to take care of, is what we write in the "name" tag. -->
+        <!-- If the parameter passed is not the same that the one that we've passed to -->
+        <!-- the "task_obj." (in this example: "task_obj.task", "task_obj.done"; then when -->
+        <!-- update a task that is already colored as completed (because its boolean value is True),-->
+        <!-- the task is going to be set to False again, and it will be uncolored. -->
+        <input type="text" class="form-control col-lg-6" name="task" placeholder="{{ task_obj.task }}" value="{{ task_obj.task }}">  
+        <input type="hidden" name="done" value="{{ task_obj.done }}">
+
+        <button type="submit" class="btn btn-primary col-lg-2">Update Task</button>
+    </form>
+{% endblock content %}
