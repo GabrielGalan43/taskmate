@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Register - Taskmate</title>
+{% endblock title %}
+
+{% block content %}
+   <br>
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-info alert-dismissible fade show" role="alert"> <!-- We added "alert-dismissible fade show" in class -->
+            {{ message }}
+            <!-- This will create an option to close the message -->
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+        </div>       
+        {% endfor %}
+    {% endif %}
+   <form method="POST" class="mt-5">
+      {% csrf_token %}
+      {{ register_form.as_p }} <!-- ".as_p" Show forms in a paragraph alignment. -->
+      <button type="submit">Register</button>
+   </form>   
+{% endblock content %}
