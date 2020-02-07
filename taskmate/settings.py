@@ -10,22 +10,28 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
+import django_heroku
 import os
+import environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+env = environ.Env(SECRET_KEY = str,)
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'o#^pkghfd$1#t_2ih7mew3of$t2ims=c+2mslu2$apq@zf1)*x'
-
+# SECRET_KEY = 'o#^pkghfd$1#t_2ih7mew3of$t2ims=c+2mslu2$apq@zf1)*x'
+SECRET_KEY = env('DJANGO_SECRET_KEY') # Here we are passing the .env variables.
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = env('DJANGO_DEBUG')
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [env('DJANGO_ALLOWED_HOSTS')]
 
 
 # Application definition
@@ -128,3 +134,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4' # We need to add this line in order to use b
 # We added this line to change the default redirect.
 # Now after logged in, we'll be redirected to 'todolist' view.
 LOGIN_REDIRECT_URL = 'todolist' 
+
+# If someone that is not registered wants to acces "Tdodo List" option,
+# It will be redirected to 'login'.
+LOGIN_URL = 'login'
+
+# Adding Heroku settings
+django_heroku.settings(locals())
