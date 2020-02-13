@@ -39,7 +39,9 @@ def todolist(request):
         # all_tasks = TaskList.objects.all()
         # ".filter(manage=request.user)" will allow the app to show to the users
         # only the tasks that the user has written.
+        # manage=request.user help to display only the tasks from the current logged in user.
         all_tasks = TaskList.objects.filter(manage=request.user)
+        # all_tasks = TaskList.objects.filter() In this line all tasks would be displayed.
         # This instance requires 2 parameters. The number passed is the number
         # of items that are going to be displayed in the page.
         paginator = Paginator(all_tasks, 10) 
