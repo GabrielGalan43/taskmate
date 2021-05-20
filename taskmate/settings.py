@@ -144,3 +144,10 @@ django_heroku.settings(locals())
 
 # Adding this line
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Define the route to the folder where profile pics
+# will be saved. The folder's name is 'media'.
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# Define how we are going to access the pictures in
+# the browser. '/media/'.
+MEDIA_URL = '/media/'
